@@ -60,9 +60,24 @@ function App() {
           </ul>
         )}
         {cart.length > 0 && (
-          <button className="mt-4 w-full bg-green-700 text-white py-2 rounded-xl hover:bg-green-800 transition">
-            Checkout
-          </button>
+          <button
+  onClick={() => {
+    if (cart.length === 0) {
+      alert("Your cart is empty!");
+    } else {
+      // Example: You could send cart data to your backend here
+      console.log("Proceeding to checkout with:", cart);
+      alert("Thank you! Redirecting to payment...");
+      
+      // Optional: Redirect to real or dummy payment page
+      window.open("https://your-payment-link.com", "_blank"); 
+    }
+  }}
+  className="mt-4 w-full bg-green-700 text-white py-2 rounded-xl hover:bg-green-800 transition duration-300"
+>
+  Checkout Now
+</button>
+
         )}
       </div>
 
