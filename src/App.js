@@ -44,6 +44,44 @@ function App() {
           ))}
         </div>
       </section>
+
+      {/* Features Section */}
+      <section className="mt-20">
+        <h2 className="text-3xl font-bold text-green-800 mb-10 text-center">Why Choose Us</h2>
+        <div className="grid gap-10 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 text-center">
+          {[
+            {
+              icon: "⚡",
+              title: "Lightning Fast Delivery",
+              desc: "Get your groceries delivered within an hour in major towns.",
+            },
+            {
+              icon: "💰",
+              title: "Affordable Prices",
+              desc: "We offer competitive prices on all items – save while you shop!",
+            },
+            {
+              icon: "🌿",
+              title: "Farm Fresh",
+              desc: "We source directly from farms for the freshest produce.",
+            },
+            {
+              icon: "📱",
+              title: "Easy to Order",
+              desc: "Order from the comfort of your home using any device.",
+            },
+          ].map((feature, idx) => (
+            <div
+              key={idx}
+              className="bg-white p-6 rounded-xl shadow hover:shadow-xl transition transform hover:scale-105 duration-300"
+            >
+              <div className="text-4xl mb-4">{feature.icon}</div>
+              <h3 className="text-xl font-bold text-green-800 mb-2">{feature.title}</h3>
+              <p className="text-green-600">{feature.desc}</p>
+            </div>
+          ))}
+        </div>
+      </section>
     </div>
   );
 }
