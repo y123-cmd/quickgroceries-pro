@@ -1,60 +1,138 @@
-import React from "react";
 import React, { useState } from "react";
 
 function App() {
-const [selectedItem, setSelectedItem] = useState(null);
+  const [cart, setCart] = useState([]);
+  const [selectedItem, setSelectedItem] = useState(null);
+
+  const handleAddToCart = (item) => {
+    if (!cart.find((i) => i.name === item.name)) {
+      setCart([...cart, item]);
+    }
+  };
+
+  const handleRemoveFromCart = (item) => {
+    setCart(cart.filter((i) => i.name !== item.name));
+  };
+
+  const products = [
+    { name: "Avocado", price: "KSh 30", image: "🥑" },
+    { name: "Mango", price: "KSh 40", image: "🥭" },
+    { name: "Milk", price: "KSh 70", image: "🥛" },
+    { name: "Bread", price: "KSh 50", image: "🍞" },
+    { name: "Banana", price: "KSh 20", image: "🍌" },
+    { name: "Watermelon", price: "KSh 100", image: "🍉" },
+    { name: "Tomato", price: "KSh 15", image: "🍅" },
+    { name: "Lemon", price: "KSh 10", image: "🍋" },
+    { name: "Carrot", price: "KSh 12", image: "🥕" },
+    { name: "Coconut", price: "KSh 60", image: "🥥" },
+    { name: "Grapes", price: "KSh 90", image: "🍇" },
+    { name: "Strawberry", price: "KSh 120", image: "🍓" },
+    { name: "Corn", price: "KSh 25", image: "🌽" },
+    { name: "Peach", price: "KSh 35", image: "🍑" },
+    { name: "Eggplant", price: "KSh 45", image: "🍆" },
+  ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-r from-green-200 via-green-100 to-green-50 px-4 sm:px-6 md:px-12 py-10 sm:py-14">
-      
+    <div className="min-h-screen bg-gradient-to-r from-green-200 via-green-100 to-green-50 px-4 sm:px-6 md:px-12 py-10 sm:py-14 relative">
+
+      {/* Cart Sidebar */}
+      <div className="fixed top-0 right-0 w-72 h-full bg-white shadow-xl p-6 overflow-y-auto z-50">
+        <h2 className="text-2xl font-bold mb-4 text-green-800">Your Cart</h2>
+        {cart.length === 0 ? (
+          <p className="text-green-600">Cart is empty</p>
+        ) : (
+          <ul>
+            {cart.map((item, index) => (
+              <li key={index} className="mb-4 flex justify-between items-center">
+                <div>
+                  <p className="font-semibold">{item.name}</p>
+                  <p className="text-sm text-green-600">{item.price}</p>
+                </div>
+                <button
+                  onClick={() => handleRemoveFromCart(item)}
+                  className="text-red-600 hover:text-red-800"
+                >
+                  Remove
+                </button>
+              </li>
+            ))}
+          </ul>
+        )}
+        {cart.length > 0 && (
+          <button className="mt-4 w-full bg-green-700 text-white py-2 rounded-xl hover:bg-green-800 transition">
+            Checkout
+          </button>
+        )}
+      </div>
+
       {/* Hero Section */}
       <header className="text-center mb-16">
-        <h1 className="text-4xl sm:text-5xl font-extrabold text-green-800 mb-4">QuickGroceries Pro</h1>
-        <p className="text-base sm:text-lg text-green-700">Groceries delivered fast, fresh, and at your fingertips!</p>
+        <h1 className="text-4xl sm:text-5xl font-extrabold text-green-800 mb-4">
+          QuickGroceries Pro
+        </h1>
+        <p className="text-base sm:text-lg text-green-700">
+          Groceries delivered fast, fresh, and at your fingertips!
+        </p>
         <button
-  onClick={() => {
-    const section = document.getElementById("featured");
-    section?.scrollIntoView({ behavior: "smooth" });
-  }}
-  className="mt-6 px-6 py-2 bg-green-700 text-white font-semibold rounded-xl hover:bg-green-600 hover:scale-105 transition duration-300"
->
-  Shop Now
-</button>
-
+          onClick={() => {
+            const section = document.getElementById("featured");
+            section?.scrollIntoView({ behavior: "smooth" });
+          }}
+          className="mt-6 px-6 py-2 bg-green-700 text-white font-semibold rounded-xl hover:bg-green-600 hover:scale-105 transition duration-300"
+        >
+          Shop Now
+        </button>
       </header>
 
       {/* Product Grid */}
       <section id="featured">
         <h2 className="text-2xl sm:text-3xl font-bold text-green-800 mb-8 text-center">Featured Products</h2>
         <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-          {[
-            { name: "Avocado", price: "KSh 30", image: "🥑" },
-            { name: "Mango", price: "KSh 40", image: "🥭" },
-            { name: "Milk", price: "KSh 70", image: "🥛" },
-            { name: "Bread", price: "KSh 50", image: "🍞" },
-            { name: "Banana", price: "KSh 20", image: "🍌" },
-            { name: "Watermelon", price: "KSh 100", image: "🍉" },
-            { name: "Tomato", price: "KSh 15", image: "🍅" },
-            { name: "Lemon", price: "KSh 10", image: "🍋" },
-            { name: "Carrot", price: "KSh 12", image: "🥕" },
-            { name: "Coconut", price: "KSh 60", image: "🥥" },
-            { name: "Grapes", price: "KSh 90", image: "🍇" },
-            { name: "Strawberry", price: "KSh 120", image: "🍓" },
-            { name: "Corn", price: "KSh 25", image: "🌽" },
-            { name: "Peach", price: "KSh 35", image: "🍑" },
-            { name: "Eggplant", price: "KSh 45", image: "🍆" },
-          ].map((item, idx) => (
+          {products.map((item, idx) => (
             <div
               key={idx}
               className="bg-white p-4 sm:p-6 rounded-xl shadow hover:shadow-xl transition duration-300 transform hover:scale-105 text-center"
+              onClick={() => setSelectedItem(item)}
             >
               <div className="text-4xl sm:text-5xl mb-3">{item.image}</div>
               <h3 className="text-lg sm:text-xl font-semibold text-green-800 mb-1">{item.name}</h3>
               <p className="text-green-600">{item.price}</p>
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleAddToCart(item);
+                }}
+                className="mt-3 text-sm bg-green-700 text-white px-4 py-1 rounded hover:bg-green-800 transition"
+              >
+                Add to Cart
+              </button>
             </div>
           ))}
         </div>
       </section>
+
+      {/* Selected Product Modal */}
+      {selectedItem && (
+        <div
+          onClick={() => setSelectedItem(null)}
+          className="fixed inset-0 bg-black bg-opacity-50 z-50 flex justify-center items-center"
+        >
+          <div
+            onClick={(e) => e.stopPropagation()}
+            className="bg-white p-6 rounded-xl w-80 text-center shadow-lg"
+          >
+            <div className="text-5xl mb-4">{selectedItem.image}</div>
+            <h3 className="text-2xl font-bold mb-2 text-green-800">{selectedItem.name}</h3>
+            <p className="text-green-600 mb-4">{selectedItem.price}</p>
+            <button
+              onClick={() => setSelectedItem(null)}
+              className="mt-3 px-6 py-2 bg-green-700 text-white rounded-xl hover:bg-green-800 transition"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
 
       {/* Features Section */}
       <section className="mt-20">
@@ -101,9 +179,9 @@ const [selectedItem, setSelectedItem] = useState(null);
           Join thousands of happy customers enjoying fast grocery delivery. Order now or download our app for the best experience!
         </p>
         <div className="flex justify-center gap-4 flex-wrap">
-          <button className="mt-6 px-6 py-2 bg-green-700 text-white font-semibold rounded-xl hover:bg-green-600 hover:scale-105 transition duration-300">
-  Shop Now
-</button>
+          <button className="px-6 py-2 bg-green-700 text-white font-semibold rounded-xl hover:bg-green-800 transition duration-300">
+            Order Now
+          </button>
           <button className="bg-white border border-green-700 text-green-700 px-6 py-2 rounded-xl hover:bg-green-100 transition duration-300">
             Download App
           </button>
