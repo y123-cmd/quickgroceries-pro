@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 function App() {
+  const [selectedFeature, setSelectedFeature] = useState(null); 
   const [cart, setCart] = useState([]);
   const [selectedItem, setSelectedItem] = useState(null);
 
@@ -135,42 +136,73 @@ function App() {
       )}
 
       {/* Features Section */}
-      <section className="mt-20">
-        <h2 className="text-2xl sm:text-3xl font-bold text-green-800 mb-10 text-center">Why Choose Us</h2>
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4 text-center">
-          {[
-            {
-              icon: "⚡",
-              title: "Lightning Fast Delivery",
-              desc: "Get your groceries delivered within an hour in major towns.",
-            },
-            {
-              icon: "💰",
-              title: "Affordable Prices",
-              desc: "We offer competitive prices on all items – save while you shop!",
-            },
-            {
-              icon: "🌿",
-              title: "Farm Fresh",
-              desc: "We source directly from farms for the freshest produce.",
-            },
-            {
-              icon: "📱",
-              title: "Easy to Order",
-              desc: "Order from the comfort of your home using any device.",
-            },
-          ].map((feature, idx) => (
-            <div
-              key={idx}
-              className="bg-white p-6 rounded-xl shadow hover:shadow-xl transition transform hover:scale-105 duration-300"
-            >
-              <div className="text-3xl sm:text-4xl mb-3">{feature.icon}</div>
-              <h3 className="text-lg sm:text-xl font-bold text-green-800 mb-1">{feature.title}</h3>
-              <p className="text-green-600">{feature.desc}</p>
-            </div>
-          ))}
-        </div>
-      </section>
+<section className="mt-20">
+  <h2 className="text-2xl sm:text-3xl font-bold text-green-800 mb-10 text-center">
+    Why Choose Us
+  </h2>
+
+  <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4 text-center">
+    {[
+      {
+        icon: "⚡",
+        title: "Lightning Fast Delivery",
+        desc: "Get your groceries delivered within an hour in major towns.",
+        details: "We have a dedicated team and fast logistics partners ensuring your delivery arrives fresh and on time. This feature is currently available in Nairobi, Mombasa, and Kisumu.",
+      },
+      {
+        icon: "💰",
+        title: "Affordable Prices",
+        desc: "We offer competitive prices on all items – save while you shop!",
+        details: "Our prices are often 10-20% lower than physical supermarkets, and we run weekly discounts across popular products.",
+      },
+      {
+        icon: "🌿",
+        title: "Farm Fresh",
+        desc: "We source directly from farms for the freshest produce.",
+        details: "By cutting out middlemen, we ensure you get the freshest items and also help farmers earn more for their produce.",
+      },
+      {
+        icon: "📱",
+        title: "Easy to Order",
+        desc: "Order from the comfort of your home using any device.",
+        details: "Our website and mobile app are optimized for quick, one-tap grocery ordering — even on slow internet.",
+      },
+    ].map((feature, idx) => (
+      <div
+        key={idx}
+        className="cursor-pointer bg-white p-6 rounded-xl shadow hover:shadow-xl transition transform hover:scale-105 duration-300"
+        onClick={() => setSelectedFeature(feature)}
+      >
+        <div className="text-3xl sm:text-4xl mb-3">{feature.icon}</div>
+        <h3 className="text-lg sm:text-xl font-bold text-green-800 mb-1">
+          {feature.title}
+        </h3>
+        <p className="text-green-600">{feature.desc}</p>
+      </div>
+    ))}
+  </div>
+</section>
+
+{/* Modal for feature details */}
+{selectedFeature && (
+  <div className="fixed inset-0 bg-black bg-opacity-40 flex justify-center items-center z-50">
+    <div className="bg-white p-6 rounded-xl max-w-md w-full mx-4 relative">
+      <button
+        onClick={() => setSelectedFeature(null)}
+        className="absolute top-2 right-4 text-xl text-green-800 hover:text-red-500"
+      >
+        &times;
+      </button>
+      <div className="text-4xl mb-4 text-center">{selectedFeature.icon}</div>
+      <h3 className="text-2xl font-bold text-green-800 mb-2 text-center">
+        {selectedFeature.title}
+      </h3>
+      <p className="text-green-700 text-sm sm:text-base text-center">
+        {selectedFeature.details}
+      </p>
+    </div>
+  </div>
+)}
 
       {/* CTA Section */}
       <section className="mt-20 bg-green-100 py-10 px-6 rounded-xl text-center shadow-sm">
