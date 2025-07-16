@@ -1,6 +1,9 @@
 import React from "react";
+import React, { useState } from "react";
 
 function App() {
+const [selectedItem, setSelectedItem] = useState(null);
+
   return (
     <div className="min-h-screen bg-gradient-to-r from-green-200 via-green-100 to-green-50 px-4 sm:px-6 md:px-12 py-10 sm:py-14">
       
@@ -8,13 +11,20 @@ function App() {
       <header className="text-center mb-16">
         <h1 className="text-4xl sm:text-5xl font-extrabold text-green-800 mb-4">QuickGroceries Pro</h1>
         <p className="text-base sm:text-lg text-green-700">Groceries delivered fast, fresh, and at your fingertips!</p>
-        <button className="mt-6 px-6 py-2 bg-green-700 text-white font-semibold rounded-xl hover:bg-green-600 hover:scale-105 transition duration-300">
-          Shop Now
-        </button>
+        <button
+  onClick={() => {
+    const section = document.getElementById("featured");
+    section?.scrollIntoView({ behavior: "smooth" });
+  }}
+  className="mt-6 px-6 py-2 bg-green-700 text-white font-semibold rounded-xl hover:bg-green-600 hover:scale-105 transition duration-300"
+>
+  Shop Now
+</button>
+
       </header>
 
       {/* Product Grid */}
-      <section>
+      <section id="featured">
         <h2 className="text-2xl sm:text-3xl font-bold text-green-800 mb-8 text-center">Featured Products</h2>
         <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           {[
@@ -91,9 +101,9 @@ function App() {
           Join thousands of happy customers enjoying fast grocery delivery. Order now or download our app for the best experience!
         </p>
         <div className="flex justify-center gap-4 flex-wrap">
-          <button className="bg-green-700 text-white px-6 py-2 rounded-xl hover:bg-green-800 transition duration-300">
-            Order Now
-          </button>
+          <button className="mt-6 px-6 py-2 bg-green-700 text-white font-semibold rounded-xl hover:bg-green-600 hover:scale-105 transition duration-300">
+  Shop Now
+</button>
           <button className="bg-white border border-green-700 text-green-700 px-6 py-2 rounded-xl hover:bg-green-100 transition duration-300">
             Download App
           </button>
