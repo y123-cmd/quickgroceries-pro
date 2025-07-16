@@ -14,7 +14,45 @@ function App() {
   const handleRemoveFromCart = (item) => {
     setCart(cart.filter((i) => i.name !== item.name));
   };
+  
+ const handleMpesaPayment = async () => {
+  const phone = prompt("Enter your phone number (e.g. 254712345678):");
 
+  if (!phone) {
+    alert("Phone number is required.");
+    return;
+  }
+
+  const totalAmount = cart.reduce((sum, item) => {
+    const amount = parseInt(item.price.replace(/[^\d]/g, ""));
+    return sum + amount;
+  }, 0);
+
+  try {
+    const response = await fetch("http://localhost:5000/api/pay", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        phone: phone,
+        amount: totalAmount,
+      }),
+    });
+
+    const result = await response.json();
+
+    if (response.ok) {
+      alert("M-PESA STK Push sent! Check your phone.");
+    } else {
+      console.error("Payment failed:", result);
+      alert("M-PESA request failed.");
+    }
+  } catch (error) {
+    console.error("Error:", error);
+    alert("Something went wrong with the payment.");
+  }
+};
   const products = [
     { name: "Avocado", price: "KSh 30", image: "🥑" },
     { name: "Mango", price: "KSh 40", image: "🥭" },
@@ -61,23 +99,11 @@ function App() {
         )}
         {cart.length > 0 && (
           <button
-  onClick={() => {
-    if (cart.length === 0) {
-      alert("Your cart is empty!");
-    } else {
-      // Example: You could send cart data to your backend here
-      console.log("Proceeding to checkout with:", cart);
-      alert("Thank you! Redirecting to payment...");
-      
-      // Optional: Redirect to real or dummy payment page
-      window.open("https://your-payment-link.com", "_blank"); 
-    }
-  }}
+  onClick={handleMpesaPayment}
   className="mt-4 w-full bg-green-700 text-white py-2 rounded-xl hover:bg-green-800 transition duration-300"
 >
   Checkout Now
 </button>
-
         )}
       </div>
 
