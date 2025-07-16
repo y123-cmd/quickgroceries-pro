@@ -1,13 +1,15 @@
+import React from "react";
+
 function App() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-100 to-white flex flex-col items-center justify-center text-center p-4">
-      <h1 className="text-4xl font-bold text-green-700">QuickGroceries Pro</h1>
-      <p className="mt-4 text-lg text-gray-700 max-w-xl">
-        A modern grocery shopping experience. Fast. Fresh. Friendly.
-      </p>
-      <button className="mt-6 px-6 py-2 bg-green-600 text-white rounded-lg shadow-md hover:bg-green-700 transition">
-        Shop Now
-      </button>
+    <div className="min-h-screen bg-gradient-to-r from-green-200 via-green-100 to-green-50 px-6 py-12">
+      <header className="text-center mb-12">
+        <h1 className="text-5xl font-extrabold text-green-800 mb-4">QuickGroceries Pro</h1>
+        <p className="text-lg text-green-700">Groceries delivered fast, fresh, and at your fingertips!</p>
+        <button className="mt-6 px-6 py-2 bg-green-700 text-white font-semibold rounded-xl hover:bg-green-800 transition duration-300">
+          Shop Now
+        </button>
+      </header>
     </div>
   );
 }
