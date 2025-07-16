@@ -205,20 +205,41 @@ function App() {
 )}
 
       {/* CTA Section */}
-      <section className="mt-20 bg-green-100 py-10 px-6 rounded-xl text-center shadow-sm">
-        <h2 className="text-2xl sm:text-3xl font-bold text-green-800 mb-4">Get Started Today</h2>
-        <p className="text-green-700 mb-6 max-w-xl mx-auto text-sm sm:text-base">
-          Join thousands of happy customers enjoying fast grocery delivery. Order now or download our app for the best experience!
-        </p>
-        <div className="flex justify-center gap-4 flex-wrap">
-          <button className="px-6 py-2 bg-green-700 text-white font-semibold rounded-xl hover:bg-green-800 transition duration-300">
-            Order Now
-          </button>
-          <button className="bg-white border border-green-700 text-green-700 px-6 py-2 rounded-xl hover:bg-green-100 transition duration-300">
-            Download App
-          </button>
-        </div>
-      </section>
+<section className="mt-20 bg-green-100 py-10 px-6 rounded-xl text-center shadow-sm">
+  <h2 className="text-2xl sm:text-3xl font-bold text-green-800 mb-4">Get Started Today</h2>
+  <p className="text-green-700 mb-6 max-w-xl mx-auto text-sm sm:text-base">
+    Join thousands of happy customers enjoying fast grocery delivery. Order now or download our app for the best experience!
+  </p>
+  <div className="flex justify-center gap-4 flex-wrap">
+    <button
+      onClick={() => {
+        const section = document.getElementById("featured");
+        section?.scrollIntoView({ behavior: "smooth" });
+      }}
+      className="mt-6 px-6 py-2 bg-green-700 text-white font-semibold rounded-xl hover:bg-green-600 hover:scale-105 transition duration-300"
+    >
+      Order Now
+    </button>
+
+    <button
+  onClick={() => {
+    const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+    if (/android/i.test(userAgent)) {
+      window.open("https://play.google.com/store/apps/details?id=com.quickgroceries.pro", "_blank");
+    } else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+      window.open("https://apps.apple.com/app/id1234567890", "_blank");
+    } else {
+      window.open("https://www.google.com", "_blank"); // fallback
+    }
+  }}
+  className="bg-white border border-green-700 text-green-700 px-6 py-2 rounded-xl hover:bg-green-100 transition duration-300"
+>
+  Download App
+</button>
+
+  </div>
+</section>
 
       {/* Footer */}
       <footer className="mt-20 pt-10 border-t border-green-300 text-center text-green-800 px-4">
