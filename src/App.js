@@ -2,11 +2,12 @@ import React from "react";
 
 function App() {
   return (
-    <div className="min-h-screen bg-gradient-to-r from-green-200 via-green-100 to-green-50 px-6 py-12">
+    <div className="min-h-screen bg-gradient-to-r from-green-200 via-green-100 to-green-50 px-4 sm:px-6 md:px-12 py-10 sm:py-14">
+      
       {/* Hero Section */}
-      <header className="text-center mb-12">
-        <h1 className="text-5xl font-extrabold text-green-800 mb-4">QuickGroceries Pro</h1>
-        <p className="text-lg text-green-700">Groceries delivered fast, fresh, and at your fingertips!</p>
+      <header className="text-center mb-16">
+        <h1 className="text-4xl sm:text-5xl font-extrabold text-green-800 mb-4">QuickGroceries Pro</h1>
+        <p className="text-base sm:text-lg text-green-700">Groceries delivered fast, fresh, and at your fingertips!</p>
         <button className="mt-6 px-6 py-2 bg-green-700 text-white font-semibold rounded-xl hover:bg-green-600 hover:scale-105 transition duration-300">
           Shop Now
         </button>
@@ -14,8 +15,8 @@ function App() {
 
       {/* Product Grid */}
       <section>
-        <h2 className="text-3xl font-bold text-green-800 mb-8 text-center">Featured Products</h2>
-        <div className="grid gap-8 sm:grid-cols-2 md:grid-cols-3">
+        <h2 className="text-2xl sm:text-3xl font-bold text-green-800 mb-8 text-center">Featured Products</h2>
+        <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           {[
             { name: "Avocado", price: "KSh 30", image: "🥑" },
             { name: "Mango", price: "KSh 40", image: "🥭" },
@@ -35,10 +36,10 @@ function App() {
           ].map((item, idx) => (
             <div
               key={idx}
-              className="bg-white p-6 rounded-xl shadow hover:shadow-xl transition duration-300 transform hover:scale-105 text-center"
+              className="bg-white p-4 sm:p-6 rounded-xl shadow hover:shadow-xl transition duration-300 transform hover:scale-105 text-center"
             >
-              <div className="text-5xl mb-4">{item.image}</div>
-              <h3 className="text-xl font-semibold text-green-800 mb-2">{item.name}</h3>
+              <div className="text-4xl sm:text-5xl mb-3">{item.image}</div>
+              <h3 className="text-lg sm:text-xl font-semibold text-green-800 mb-1">{item.name}</h3>
               <p className="text-green-600">{item.price}</p>
             </div>
           ))}
@@ -47,8 +48,8 @@ function App() {
 
       {/* Features Section */}
       <section className="mt-20">
-        <h2 className="text-3xl font-bold text-green-800 mb-10 text-center">Why Choose Us</h2>
-        <div className="grid gap-10 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 text-center">
+        <h2 className="text-2xl sm:text-3xl font-bold text-green-800 mb-10 text-center">Why Choose Us</h2>
+        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4 text-center">
           {[
             {
               icon: "⚡",
@@ -75,23 +76,39 @@ function App() {
               key={idx}
               className="bg-white p-6 rounded-xl shadow hover:shadow-xl transition transform hover:scale-105 duration-300"
             >
-              <div className="text-4xl mb-4">{feature.icon}</div>
-              <h3 className="text-xl font-bold text-green-800 mb-2">{feature.title}</h3>
+              <div className="text-3xl sm:text-4xl mb-3">{feature.icon}</div>
+              <h3 className="text-lg sm:text-xl font-bold text-green-800 mb-1">{feature.title}</h3>
               <p className="text-green-600">{feature.desc}</p>
             </div>
           ))}
         </div>
       </section>
-{/* Footer */}
-<footer className="mt-20 pt-10 border-t border-green-300 text-center text-green-800">
-  <p className="text-sm">&copy; {new Date().getFullYear()} QuickGroceries Pro. All rights reserved.</p>
-  <div className="mt-4 flex justify-center gap-6 text-lg">
-    <a href="/privacy-policy" className="hover:underline hover:text-green-600 transition">Privacy Policy</a>
-    <a href="/terms" className="hover:underline hover:text-green-600 transition">Terms of Service</a>
-    <a href="/contact" className="hover:underline hover:text-green-600 transition">Contact Us</a>
-  </div>
-</footer>
 
+      {/* CTA Section */}
+      <section className="mt-20 bg-green-100 py-10 px-6 rounded-xl text-center shadow-sm">
+        <h2 className="text-2xl sm:text-3xl font-bold text-green-800 mb-4">Get Started Today</h2>
+        <p className="text-green-700 mb-6 max-w-xl mx-auto text-sm sm:text-base">
+          Join thousands of happy customers enjoying fast grocery delivery. Order now or download our app for the best experience!
+        </p>
+        <div className="flex justify-center gap-4 flex-wrap">
+          <button className="bg-green-700 text-white px-6 py-2 rounded-xl hover:bg-green-800 transition duration-300">
+            Order Now
+          </button>
+          <button className="bg-white border border-green-700 text-green-700 px-6 py-2 rounded-xl hover:bg-green-100 transition duration-300">
+            Download App
+          </button>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="mt-20 pt-10 border-t border-green-300 text-center text-green-800 px-4">
+        <p className="text-sm mb-4">&copy; {new Date().getFullYear()} QuickGroceries Pro. All rights reserved.</p>
+        <div className="flex flex-col sm:flex-row justify-center gap-4 text-sm">
+          <a href="/privacy-policy" className="hover:underline hover:text-green-600 transition">Privacy Policy</a>
+          <a href="/terms" className="hover:underline hover:text-green-600 transition">Terms of Service</a>
+          <a href="/contact" className="hover:underline hover:text-green-600 transition">Contact Us</a>
+        </div>
+      </footer>
     </div>
   );
 }
