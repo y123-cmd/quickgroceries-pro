@@ -82,6 +82,16 @@ function App() {
           ))}
         </div>
       </section>
+{/* Footer */}
+<footer className="mt-20 pt-10 border-t border-green-300 text-center text-green-800">
+  <p className="text-sm">&copy; {new Date().getFullYear()} QuickGroceries Pro. All rights reserved.</p>
+  <div className="mt-4 flex justify-center gap-6 text-lg">
+    <a href="/privacy-policy" className="hover:underline hover:text-green-600 transition">Privacy Policy</a>
+    <a href="/terms" className="hover:underline hover:text-green-600 transition">Terms of Service</a>
+    <a href="/contact" className="hover:underline hover:text-green-600 transition">Contact Us</a>
+  </div>
+</footer>
+
     </div>
   );
 }
